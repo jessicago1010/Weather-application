@@ -33,7 +33,7 @@ let form = document.querySelector("#currentCity");
 function displayWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#currentTemp");
-  currentTemp.innerHTML = `${temperature}ºC`;
+  currentTemp.innerHTML = `${temperature}`;
   document.querySelector("h2").innerHTML = response.data.name;
 }
 
