@@ -35,7 +35,15 @@ function displayWeather(response) {
   let currentTemp = document.querySelector("#currentTemp");
   currentTemp.innerHTML = `${temperature}`;
   document.querySelector("h2").innerHTML = response.data.name;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = "Humidity: " + response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = "Wind: " + response.data.wind.speed + " MPH";
+
 }
+
 
 function inputCity(event) {
   event.preventDefault();
