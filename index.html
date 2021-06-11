@@ -9,6 +9,7 @@
       rel="stylesheet"
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
+      
     />
     <link href="src/styles.css" rel="stylesheet" />
   </head>
@@ -20,28 +21,30 @@
           Weather App
         </h1>
         <form id="currentCity">
-        <div class="mb-3">
+        <div class="mb-2">
           <div class="row">
             <div class="col-8">
               
               <label for="formGroupExampleInput" class="form-label">City</label>
               <input
-                type="text"
+                type="search"
                 class="form-control"
                 id="city-input"
                 placeholder="Use full city name"
+                autocomplete="off"
               />
             
+            
             </div>
+          
           </div>
         </div>
       
 
-        <div class="mb-3">
+        <div class="mb-2">
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
               <button type="button" class="btn btn-primary">Search</button>
-              <button type="button" class="btn btn-primary">Current</button>
             </div>
           </div>
         </div>
@@ -56,12 +59,18 @@
           <li id="date" > </li>
           <li id="description">Sunny</li>
         </ul>
+        <img 
+          src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+          alt="weather icon"
+          id="icon"
+          />
 
 <div id="currentTemp">63</div><span class= "unitStyle">ºC | <a href="#">ºF </a></span>
           </div>
 
           <div class="col-6">
             <ul>
+
               <li id="humidity"> Humidity: 46%
                 </li>
                 <li id="wind"> Wind: 18mph

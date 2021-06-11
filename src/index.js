@@ -40,7 +40,12 @@ function displayWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = "Humidity: " + response.data.main.humidity;
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = "Wind: " + response.data.wind.speed + " MPH";
+  windElement.innerHTML = "Wind: " + Math.round(response.data.wind.speed) + " MPH";
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute (
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 
 }
 
