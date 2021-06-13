@@ -28,7 +28,6 @@ if (minutes < 10) {
 
 currentDate.innerHTML = ` ${days[day]} ${hours}:${minutes} `;
 
-let form = document.querySelector("#currentCity");
 
 function displayWeather(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -46,17 +45,25 @@ function displayWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-
+iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-
-function inputCity(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
+function search(city) {
   let apiKey = "a9d385397e6bd4076a3c48f247270367";
   let unit = "metric";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   axios.get(url).then(displayWeather);
 }
 
-form.addEventListener("submit", inputCity);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+  
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+search("New York");
