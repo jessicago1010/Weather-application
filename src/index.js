@@ -31,7 +31,8 @@ currentDate.innerHTML = ` ${days[day]} ${hours}:${minutes} `;
 
 function displayWeather(response) {
   let temperature = Math.round(response.data.main.temp);
-  let currentTemp = document.querySelector("#currentTemp");
+  celsiusTemperature = Math.round(response.data.main.temp);
+  let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = `${temperature}`;
   document.querySelector("h2").innerHTML = response.data.name;
   let descriptionElement = document.querySelector("#description");
@@ -62,6 +63,29 @@ function handleSubmit(event) {
   search(cityInputElement.value);
   
 }
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let currentTemp = document.querySelector("#current-temp");
+  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
+
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#current-temp");
+  currentTemp.innerHTML = celsiusTemperature;
+}
+
+let celsiusTemperature = null;
+
+let fahrenheitTemperature = document.querySelector("#fahrenheit-link");
+fahrenheitTemperature.addEventListener ("click", displayFahrenheitTemperature);
+
+celsiusTemperature = document.querySelector("#celsius-link");
+celsiusTemperature.addEventListener ("click", displayCelsiusTemperature);
+
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
