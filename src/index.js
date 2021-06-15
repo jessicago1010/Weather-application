@@ -31,7 +31,7 @@ currentDate.innerHTML = ` ${days[day]} ${hours}:${minutes} `;
 function getForecast(coordinates){
   console.log(coordinates);
   let apiKey = "a9d385397e6bd4076a3c48f247270367";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -116,10 +116,10 @@ forecast.forEach(function (forecastDay, index) {
           />
           <br />
           <span class="weather-forecast-temp-max">
-          ${Math.round(forecastDay.temp.max)}º
+          ${Math.round(forecastDay.temp.max)}ºF
           </span>
           <span class="weather-forecast-temp-min">
-          ${Math.round(forecastDay.temp.min)}º
+          ${Math.round(forecastDay.temp.min)}ºF
           </span>
         </div>
         `;
