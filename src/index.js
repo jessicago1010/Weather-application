@@ -28,6 +28,12 @@ if (minutes < 10) {
 
 currentDate.innerHTML = ` ${days[day]} ${hours}:${minutes} `;
 
+function getForecast(coordinates){
+  console.log(coordinates);
+  let apiKey = "a9d385397e6bd4076a3c48f247270367";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function displayWeather(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -47,6 +53,8 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 iconElement.setAttribute("alt", response.data.weather[0].description);
+getForecast(response.data.coord);
+
 }
 
 function search(city) {
@@ -55,6 +63,8 @@ function search(city) {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   axios.get(url).then(displayWeather);
 }
+
+
 
 
 function handleSubmit(event) {
@@ -78,16 +88,17 @@ function displayCelsiusTemperature(event) {
   currentTemp.innerHTML = celsiusTemperature;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+let forecast = response.data.daily;
 let forecastElement = document.querySelector("#forecast");
 let days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]; 
 let forecastHTML = `<div class="row">`;
-days.forEach(function (day) {
+forecast.forEach(function (forecastDay) {
   forecastHTML =
     forecastHTML +
     `<div class="col-2">
           <div class = "weather-forecast-date">
-          ${day}
+          ${forecastDay.dt}
           </div>
             <img 
           src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
@@ -110,7 +121,7 @@ forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
 }
 
-displayForecast();
+
 
 let celsiusTemperature = null;
 
