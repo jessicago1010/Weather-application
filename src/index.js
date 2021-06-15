@@ -78,6 +78,40 @@ function displayCelsiusTemperature(event) {
   currentTemp.innerHTML = celsiusTemperature;
 }
 
+function displayForecast() {
+let forecastElement = document.querySelector("#forecast");
+let days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]; 
+let forecastHTML = `<div class="row">`;
+days.forEach(function (day) {
+  forecastHTML =
+    forecastHTML +
+    `<div class="col-2">
+          <div class = "weather-forecast-date">
+          ${day}
+          </div>
+            <img 
+          src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+          alt="weather icon"
+          id="icon"
+          width="36"
+          />
+          <br />
+          <span class="weather-forecast-temp-max">
+          18
+          </span>
+          <span class="weather-forecast-temp-min">
+          12
+          </span>
+        </div>
+        `;
+});
+
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
+
 let celsiusTemperature = null;
 
 let fahrenheitTemperature = document.querySelector("#fahrenheit-link");
