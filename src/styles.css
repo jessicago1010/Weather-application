@@ -29,6 +29,14 @@ footer {
   border-radius: 15px;
 }
 
+.weather-forecast {
+  text-align: center;
+}
+
+.weather-forecast-date, .weather-forecast-temp-min {
+  opacity: 0.5;
+}
+
 #current-temp {
   font-size: 50px;
 }
